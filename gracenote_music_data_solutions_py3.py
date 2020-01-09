@@ -137,22 +137,11 @@ def recording_metadata(recording_gn_id):
 
         ms_duration = recording_json["duration"]
 
-        # much simpler way to convert to minutes and seconds:
-        # sec_duration = round((int(ms_duration) / 1000))
-        # mins = int(sec_duration / 60)
-        # secs = sec_duration % 60
+        sec_duration = round((int(ms_duration) / 1000))
+        mins = int(sec_duration / 60)
+        secs = sec_duration % 60
 
-        sec_duration = int(ms_duration[:-3])
-        tenths_digit = int(ms_duration[-3:-2])
-        if tenths_digit >= 5:
-            sec_duration += 1
-
-        mins, sec, incremental = 0, 0, 60
-        while incremental < sec_duration:
-            mins += 1
-            incremental += 60
-        sec = sec_duration - incremental + 60
-        print("Duration: {0} mins {1} sec".format(mins, sec))
+        print("Duration: {0} mins {1} sec".format(mins, secs))
 
 
 ##########################
